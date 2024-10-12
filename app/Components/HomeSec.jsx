@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import { Box } from '@chakra-ui/react';
+import { Box, Container, Heading, VStack } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import bgVideo from "../img/bgVideo.mp4"
+import bgVideo from "@/Public/Video/bgVideo.mp4"
+
 export default function HomeSec() {
   const [isClient, setIsClient] = useState(false);
 
@@ -17,7 +18,6 @@ export default function HomeSec() {
 
   return (
     <Box position="relative" w="100vw" h="100vh" overflow="hidden">
-      
       <Box
         as="video"
         autoPlay
@@ -33,9 +33,19 @@ export default function HomeSec() {
         transform="translate(-50%, -50%)"
         zIndex="-1"
       >
-        <source src={bgVideo} type="video/mp4" />
+        <source src={`${bgVideo}`} type="video/mp4" />
         Your browser does not support the video tag.
       </Box>
+
+      <Container>
+        <VStack h={"100vh"} justifyContent={"center"}>
+          <Box>
+            <Heading>Code</Heading>
+          </Box>
+        </VStack>
+      </Container>
+     
     </Box>
+
   );
 }
