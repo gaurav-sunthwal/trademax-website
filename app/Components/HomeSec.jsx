@@ -17,6 +17,7 @@ export default function HomeSec() {
 
   return (
     <Box position="relative" w="100vw" h="100vh" overflow="hidden">
+      
       <Box
         as="video"
         autoPlay
