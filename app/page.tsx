@@ -1,9 +1,16 @@
-import HomeSec from "./Components/HomeSec";
+import { Box } from "@chakra-ui/react";
+import HomeSec from "./ComponentsItem/HomeSec";
+import AboutUs from "./ComponentsItem/AboutUs";
 
 export default function Home() {
   return (
     <>
-     <HomeSec/>
+      <Box>
+        <HomeSec />
+      </Box>
+      <Box h={"100vh"}>
+        <AboutUs/>
+      </Box>
     </>
   );
 }
