@@ -15,7 +15,7 @@ import SecHeading from "./SecHeading";
 import { TiTick } from "react-icons/ti";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import Link from "next/link";
-
+import team from "@/app/img/team .jpg"
 // veriables
 
 const aboutSec1 = ` The Trading Club at MIT-WPU is a student-run organization that
@@ -37,6 +37,7 @@ const ops = [
 ];
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa6";
+import Image from "next/image";
 
 export default function AboutUs() {
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
@@ -48,8 +49,8 @@ export default function AboutUs() {
   return (
     <Box bg={useColorModeValue("gray.50", "gray.900")} py={"70px"}>
       <Container maxW="container.xl">
-        <HStack w={"100%"} justifyContent="flex-start">
-          <Box maxW={isLargerThan800 ? "50%" : "100%"} w={"100%"}>
+        <HStack w={"100%"} justifyContent="space-between" wrap={"wrap"} alignItems={"center"}>
+          <Box maxW={isLargerThan800 ? "48%" : "100%"} w={"100%"}>
             <VStack spacing={6} w={"100%"} align={"start"} textAlign={"left"}>
               {/* Section Heading */}
               <SecHeading title="About Us" />
@@ -97,6 +98,9 @@ export default function AboutUs() {
                 </HStack>
               </Box>
             </VStack>
+          </Box>
+          <Box w={isLargerThan800 ? "50%" : "100%"} mt={isLargerThan800 ? "0" : "20px"}>
+            <Image alt="team" src={team}/>
           </Box>
         </HStack>
       </Container>

@@ -1,10 +1,5 @@
 "use client";
-import {
-  Box,
-  Heading,
-  VStack,
-  Container,
-} from "@chakra-ui/react";
+import { Box, Heading, VStack, Container } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import bgVideo from "@/Public/Video/bgVideo.mp4";
 import PulsatingButton from "@/components/ui/pulsating-button";
@@ -56,9 +51,8 @@ export default function HomeSec() {
       {/* Content */}
       <VStack h={"100%"} spacing={8} justifyContent={"space-evenly"} mt={0}>
         <Container maxW="container.xl" textAlign={"center"}>
-          <Heading fontSize={"5.5rem"} color={"#efe3e3"}>
-          
-            <BlurIn  word="WelCome To TradeMax !!" />
+          <Heading fontSize={"4.5rem"} color={"#efe3e3"}>
+            <BlurIn word="WelCome To TradeMax !!" className="text-4.5rem font-magic-ui" />
           </Heading>
           <Heading size={"lg"} color={"#C0C0C0"}>
             Trade Master Markets To Share Knowledge!!

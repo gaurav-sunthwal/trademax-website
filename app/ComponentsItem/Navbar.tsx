@@ -5,27 +5,14 @@ import Image from "next/image";
 import { Box, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import SparklesText from "@/components/ui/sparkles-text";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // const [isScrolled, setIsScrolled] = useState(false);
 
   // Function to toggle menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-  // Effect to detect scroll and apply background blur after 20vh
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const scrollHeight = window.scrollY;
-  //     setIsScrolled(scrollHeight > window.innerHeight * 0.2); // 20vh equivalent
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
 
   // Array for menu items
   const menuItems = [
@@ -37,34 +24,20 @@ export default function Navbar() {
   ];
 
   // Colors for light and dark mode
-  // const bgColor = useColorModeValue(
-  //   "rgba(255, 255, 255, 0.8)",
-  //   "rgba(0, 0, 0, 0.8)"
-  // );
-  // const hoverColor = useColorModeValue("gray.100", "gray.700");
   const textColor = useColorModeValue("gray.900", "white");
+  const overlayColor = useColorModeValue("rgba(255, 255, 255, 0.8)", "rgba(0, 0, 0, 0.8)");
 
-
-  
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
-    <Box
-      position={"absolute"}
-      w={"100%"}
-      zIndex="10"
-      className={`transition-all duration-300 `}
-    >
+    <Box position={"absolute"} w={"100%"} zIndex="10" className={`transition-all duration-300`}>
       <nav>
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a
-            href="/"
-            className="flex items-center space-x-3 rtl:space-x-reverse"
-          >
+          <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <Image src={logo} className="w-14" alt="Logo" />
             <SparklesText
               text="TradeMax"
               className="self-center text-2xl font-semibold whitespace-nowrap text-white"
-              // style={{ color: textColor }}
             />
           </a>
           <button
@@ -93,24 +66,54 @@ export default function Navbar() {
               />
             </svg>
           </button>
-          <div
-            className={`${
-              isMenuOpen ? "block" : "hidden"
-            } w-full md:block md:w-auto`}
-            id="navbar-default"
-          >
-            <ul
-              className="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 items-center"
-              style={{ color: textColor }}
+
+          {/* Mobile Menu with Blur Effect */}
+          {isMenuOpen && (
+            <Box
+              position="absolute"
+              top="100%"
+              left="0"
+              right="0"
+              bg={overlayColor}
+              backdropFilter="blur(10px)"
+              zIndex="10"
+              borderRadius="md"
+              boxShadow="lg"
+              p="4"
+              className="md:hidden" // Only show on mobile
             >
+              <ul
+                className="font-medium flex flex-col space-y-2"
+                style={{ color: textColor }}
+              >
+                {menuItems.map((item) => (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      className={`block py-2 px-3 rounded transition-colors duration-200 ${
+                        item.label === "Home" ? "bg-blue-700" : ""
+                      }`}
+                      style={{ color: textColor }}
+                      aria-current={item.label === "Home" ? "page" : undefined}
+                      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </Box>
+          )}
+
+          <div className="hidden md:block">
+            <ul className="font-medium flex flex-row space-x-8">
               {menuItems.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
                     className={`block py-2 px-3 rounded md:p-0 ${
-                      item.label === "Home"
-                        ? "bg-blue-700 md:bg-transparent md:text-white"
-                        : ""
+                      item.label === "Home" ? "bg-blue-700 md:bg-transparent md:text-white" : ""
                     }`}
                     style={{ color: textColor }}
                     aria-current={item.label === "Home" ? "page" : undefined}
@@ -119,13 +122,14 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
-              <Box>
-                <Button onClick={toggleColorMode}>
-                  {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-                </Button>
-              </Box>
             </ul>
           </div>
+
+          <Box>
+            <Button onClick={toggleColorMode}>
+              {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+            </Button>
+          </Box>
         </div>
       </nav>
     </Box>
