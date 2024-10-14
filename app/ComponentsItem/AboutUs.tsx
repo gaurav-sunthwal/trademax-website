@@ -75,7 +75,7 @@ export default function AboutUs() {
                 </Text>
               </Box>
               <Box>
-                <HStack justifyContent={"space-between"} wrap={"wrap"}>
+                <HStack justifyContent={"space-between"} wrap={"wrap"} w={"100%"}>
                   {ops.map((item, index) => {
                     return <MarkName title={item} key={index} />;
                   })}
@@ -99,9 +99,9 @@ export default function AboutUs() {
               </Box>
             </VStack>
           </Box>
-          <Box w={isLargerThan800 ? "50%" : "100%"} mt={isLargerThan800 ? "0" : "20px"}>
+          <HStack justifyContent={"center"} w={isLargerThan800 ? "50%" : "100%"} mt={isLargerThan800 ? "0" : "20px"} borderRadius={"50%"}>
             <Image alt="team" src={team}/>
-          </Box>
+          </HStack>
         </HStack>
       </Container>
     </Box>
