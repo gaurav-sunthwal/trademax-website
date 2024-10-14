@@ -92,7 +92,6 @@ export default function AboutUs() {
                         Socallink="https://www.instagram.com/trademax.mitwpu/"
                       />
                       <SocalMedia icons={<FaLinkedinIn />} Socallink="/" />
-                      <SocalMedia icons="d" Socallink="/" />
                     </HStack>
                   </Box>
                 </HStack>
