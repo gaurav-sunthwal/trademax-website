@@ -120,7 +120,7 @@ function SocalMedia({ icons, Socallink }: { icons: React.ReactNode; Socallink: s
         _hover={{ bg: "transparentAlpha.400" }}
       >
         <Link href={Socallink} target="_blank">
-          <Text fontSize="2xl" color="whiteAlpha.800">
+          <Text fontSize="2xl">
             {icons}
           </Text>
         </Link>

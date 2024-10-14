@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import logo from "@/app/img/logo.png";
 import Image from "next/image";
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import SparklesText from "@/components/ui/sparkles-text";
-
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   // const [isScrolled, setIsScrolled] = useState(false);
@@ -44,6 +44,9 @@ export default function Navbar() {
   // const hoverColor = useColorModeValue("gray.100", "gray.700");
   const textColor = useColorModeValue("gray.900", "white");
 
+
+  
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
       position={"absolute"}
@@ -60,7 +63,7 @@ export default function Navbar() {
             <Image src={logo} className="w-14" alt="Logo" />
             <SparklesText
               text="TradeMax"
-              className="self-center text-2xl font-semibold whitespace-nowrap"
+              className="self-center text-2xl font-semibold whitespace-nowrap text-white"
               // style={{ color: textColor }}
             />
           </a>
@@ -97,7 +100,7 @@ export default function Navbar() {
             id="navbar-default"
           >
             <ul
-              className="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0"
+              className="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg bg-transparent md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 items-center"
               style={{ color: textColor }}
             >
               {menuItems.map((item) => (
@@ -116,6 +119,11 @@ export default function Navbar() {
                   </a>
                 </li>
               ))}
+              <Box>
+                <Button onClick={toggleColorMode}>
+                  {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+                </Button>
+              </Box>
             </ul>
           </div>
         </div>
