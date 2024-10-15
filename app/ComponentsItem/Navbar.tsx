@@ -16,10 +16,11 @@ export default function Navbar() {
 
   // Array for menu items
   const menuItems = [
-    { label: "Home", href: "#home" },
+    { label: "Home", href: "/" },
     { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Pricing", href: "#pricing" },
+    { label: "Our Team", href: "#team" },
+    { label: "Events", href: "/Events" },
+    { label: "Gallary", href: "/Gallary" },
     { label: "Contact", href: "#contact" },
   ];
 

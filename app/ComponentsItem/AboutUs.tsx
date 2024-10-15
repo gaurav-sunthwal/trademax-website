@@ -15,10 +15,12 @@ import SecHeading from "./SecHeading";
 import { TiTick } from "react-icons/ti";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import Link from "next/link";
-import team from "@/app/img/team .jpg"
-// veriables
+import team from "@/app/img/team .jpg"; // Adjusted image import
+import { FaGithub, FaInstagram } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa6";
+import Image from "next/image";
 
-const aboutSec1 = ` The Trading Club at MIT-WPU is a student-run organization that
+const aboutSec1 = `The Trading Club at MIT-WPU is a student-run organization that
                   provides a platform for students to learn about and explore
                   the world of trading. It is one of the most active student
                   organizations on campus, with a diverse group of members from
@@ -33,11 +35,8 @@ const ops = [
   "TRADING COMPETITIONS",
   "HACKATHONS",
   "CASE STUDIES",
-  "WorkShopes",
+  "Workshops",
 ];
-import { FaInstagram } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa6";
-import Image from "next/image";
 
 export default function AboutUs() {
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
@@ -47,9 +46,9 @@ export default function AboutUs() {
   const textColor = useColorModeValue("gray.600", "gray.400");
 
   return (
-    <Box bg={useColorModeValue("gray.50", "gray.900")} py={"70px"}>
+    <Box bg={useColorModeValue("gray.50", "gray.900")} py={"70px"} h={"auto"}> 
       <Container maxW="container.xl">
-        <HStack w={"100%"} justifyContent="space-between" wrap={"wrap"} alignItems={"center"}>
+        <HStack w={"100%"} justifyContent="space-between" wrap={"wrap"} alignItems={"flex-start"}>
           <Box maxW={isLargerThan800 ? "48%" : "100%"} w={"100%"}>
             <VStack spacing={6} w={"100%"} align={"start"} textAlign={"left"}>
               {/* Section Heading */}
@@ -76,9 +75,9 @@ export default function AboutUs() {
               </Box>
               <Box>
                 <HStack justifyContent={"space-between"} wrap={"wrap"} w={"100%"}>
-                  {ops.map((item, index) => {
-                    return <MarkName title={item} key={index} />;
-                  })}
+                  {ops.map((item, index) => (
+                    <MarkName title={item} key={index} />
+                  ))}
                 </HStack>
               </Box>
               <Box mt={4} w={"100%"}>
@@ -92,15 +91,32 @@ export default function AboutUs() {
                         icons={<FaInstagram />}
                         Socallink="https://www.instagram.com/trademax.mitwpu/"
                       />
-                      <SocalMedia icons={<FaLinkedinIn />} Socallink="/" />
+                      <SocalMedia icons={<FaLinkedinIn />} Socallink="https://www.linkedin.com/company/club-trademax/" />
+                      <SocalMedia icons={<FaGithub />} Socallink="https://github.com/trademax-mitwpu/trademax-website" />
                     </HStack>
                   </Box>
                 </HStack>
               </Box>
             </VStack>
           </Box>
-          <HStack justifyContent={"center"} w={isLargerThan800 ? "50%" : "100%"} mt={isLargerThan800 ? "0" : "20px"} borderRadius={"50%"}>
-            <Image alt="team" src={team}/>
+          <HStack
+            justifyContent={"center"}
+            w={isLargerThan800 ? "50%" : "100%"}
+            mt={isLargerThan800 ? "0" : "20px"}
+            borderRadius={"lg"} // Adjusted for less roundness
+            overflow="hidden"
+            boxShadow="lg"
+          >
+            <Image
+              alt="team"
+              src={team}
+              objectFit="cover"
+              width={isLargerThan800 ? 600 : 400} // Responsive width
+              height={isLargerThan800 ? 400 : 250} // Responsive height
+              style={{ borderRadius: "8px", transition: "transform 0.3s" }} // Rounded corners with transition
+              onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")} // Scale on hover
+              onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")} // Reset scale
+            />
           </HStack>
         </HStack>
       </Container>
@@ -108,40 +124,34 @@ export default function AboutUs() {
   );
 }
 
-function SocalMedia({ icons, Socallink }: { icons: React.ReactNode; Socallink: string }){
+function SocalMedia({ icons, Socallink }: { icons: React.ReactNode; Socallink: string }) {
   return (
-    <>
-      <Box
-        border={"1px"}
-        mx={2}
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        w="45px"
-        h="45px"
-        borderRadius="full"
-        bg="transparentAlpha.200"
-        _hover={{ bg: "transparentAlpha.400" }}
-      >
-        <Link href={Socallink} target="_blank">
-          <Text fontSize="2xl">
-            {icons}
-          </Text>
-        </Link>
-      </Box>
-    </>
+    <Box
+      border={"1px"}
+      mx={2}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      w="45px"
+      h="45px"
+      borderRadius="full"
+      bg="transparentAlpha.200"
+      _hover={{ bg: "transparentAlpha.400" }}
+    >
+      <Link href={Socallink} target="_blank">
+        <Text fontSize="2xl">{icons}</Text>
+      </Link>
+    </Box>
   );
 }
 
 function MarkName({ title }: { title: string }) {
   return (
-    <>
-      <Box w={"40%"}>
-        <HStack>
-          <TiTick />
-          <Text>{title}</Text>
-        </HStack>
-      </Box>
-    </>
+    <Box w={"40%"}>
+      <HStack>
+        <TiTick />
+        <Text>{title}</Text>
+      </HStack>
+    </Box>
   );
 }
