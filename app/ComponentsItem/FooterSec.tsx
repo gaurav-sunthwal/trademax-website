@@ -3,7 +3,6 @@
 import {
   Box,
   Container,
-  Divider,
   Heading,
   HStack,
   IconButton,
@@ -15,7 +14,7 @@ import Image from "next/image";
 import React from "react";
 import logo from "@/app/img/logo.png";
 import Link from "next/link";
-import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const accounts = [
   {
